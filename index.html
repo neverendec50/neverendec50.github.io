@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building with three big letters</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100vh;
+            background: #000000;
+            overflow: hidden;
+        }
+
+        .bg-image {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+        }
+
+        .secret-link {
+            position: fixed;
+            top: 12px;
+            left: 16px;
+            color: #0a0a0a;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            text-decoration: none;
+            background: transparent;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            z-index: 10;
+        }
+
+        .secret-link:hover {
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="image.jpg" alt="" class="bg-image">
+
+    <a href="sfx_D4444.mp3" class="secret-link">one</a>
+
+</body>
+</html>
