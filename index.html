@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMICRON — Access</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            height: 100vh;
+            background: #0a0a0a;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            color: #33ff33;
+        }
+
+        .terminal {
+            width: 100%;
+            height: 100%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .logo {
+            font-size: 80px;
+            font-weight: bold;
+            color: #2ecc40;
+            letter-spacing: 8px;
+            text-shadow: 0 0 10px #2ecc40, 0 0 20px #2ecc40;
+            margin-bottom: 40px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .line {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #33ff33;
+        }
+
+        .line .label {
+            color: #1a8c1a;
+        }
+
+        .prompt {
+            color: #33ff33;
+        }
+
+        input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #33ff33;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            width: 400px;
+            caret-color: #33ff33;
+        }
+
+        input::selection {
+            background: #33ff33;
+            color: #0a0a0a;
+        }
+
+        .bar {
+            display: inline-block;
+            color: #33ff33;
+        }
+
+        .bar-bg {
+            color: #0a5c0a;
+        }
+
+        #error {
+            color: #ff3333;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal">
+        <div class="logo">OMICRON</div>
+
+        <div class="line">
+            <span class="label">LOGIN:</span>
+        </div>
+        <div class="line">
+            <span class="prompt">&gt; </span><input type="text" id="login" autocomplete="off" autofocus>
+        </div>
+
+        <div class="line" style="margin-top: 30px;">
+            <span class="label">PASSWORD:</span>
+        </div>
+        <div class="line">
+            <span class="prompt">&gt; </span><input type="password" id="password" autocomplete="off">
+        </div>
+
+        <div id="error"></div>
+
+        <div class="line" style="margin-top: 30px;">
+            <span class="label">SCANNING</span>
+            <span class="bar-bg">[</span><span class="bar" id="bar"></span><span class="bar-bg">]</span>
+        </div>
+        <div class="line" id="access-level"></div>
+    </div>
+
+    <script>
+        const CORRECT_LOGIN = "Catherine Berce";
+        const CORRECT_PASSWORD = "password7";
+
+        const loginInput = document.getElementById('login');
+        const passwordInput = document.getElementById('password');
+        const errorDiv = document.getElementById('error');
+        const bar = document.getElementById('bar');
+        const accessLevel = document.getElementById('access-level');
+
+        let attempts = 0;
+        let checking = false;
+
+        function checkCredentials() {
+            if (checking) return;
+
+            const login = loginInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (login === "" || password === "") return;
+
+            checking = true;
+            errorDiv.textContent = "";
+            bar.textContent = "";
+            accessLevel.textContent = "";
+
+            let progress = 0;
+            const totalSteps = 20;
+            const stepTime = 50;
+
+            const interval = setInterval(() => {
+                progress++;
+                const filled = Math.floor((progress / totalSteps) * 20);
+                const empty = 20 - filled;
+                bar.textContent = "█".repeat(filled) + " ".repeat(empty);
+
+                if (progress >= totalSteps) {
+                    clearInterval(interval);
+                    finalizeCheck(login, password);
+                }
+            }, stepTime);
+        }
+
+        function finalizeCheck(login, password) {
+            if (login === CORRECT_LOGIN && password === CORRECT_PASSWORD) {
+                accessLevel.textContent = "LEVEL 3: ACCESS GRANTED.";
+                accessLevel.style.color = "#33ff33";
+
+                setTimeout(() => {
+                    window.location.href = "projects.html";
+                }, 800);
+            } else {
+                attempts++;
+                accessLevel.textContent = "";
+                bar.textContent = "";
+
+                if (attempts >= 3) {
+                    errorDiv.textContent = "ACCESS DENIED. TOO MANY ATTEMPTS. TERMINAL LOCKED.";
+                } else {
+                    errorDiv.textContent = "ACCESS DENIED. INVALID CREDENTIALS.";
+                }
+
+                checking = false;
+                passwordInput.value = "";
+                loginInput.focus();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                checkCredentials();
+            }
+        });
+
+        loginInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && loginInput.value.trim() !== "") {
+                e.preventDefault();
+                passwordInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>

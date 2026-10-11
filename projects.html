@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMICRON — Projects</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: #0a0a0a;
+            font-family: 'Courier New', monospace;
+            color: #33ff33;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .header {
+            font-size: 40px;
+            font-weight: bold;
+            color: #2ecc40;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px #2ecc40;
+            margin-bottom: 10px;
+        }
+
+        .subheader {
+            color: #1a8c1a;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .project {
+            margin-bottom: 40px;
+            border-left: 3px solid #1a5c1a;
+            padding-left: 20px;
+        }
+
+        .project-title {
+            font-size: 22px;
+            color: #2ecc40;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #2ecc40;
+        }
+
+        .status {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .status.completed { color: #2ecc40; }
+        .status.suspended { color: #ffaa00; }
+
+        .supervisor {
+            color: #1a8c1a;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            color: #33ff33;
+            font-size: 15px;
+            margin-bottom: 15px;
+            white-space: pre-line;
+        }
+
+        .progress {
+            color: #1a8c1a;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .results {
+            color: #33ff33;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            color: #1a8c1a;
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .reply {
+            border-left: 2px solid #1a5c1a;
+            padding-left: 15px;
+            margin-top: 20px;
+            color: #2ecc40;
+            font-size: 14px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 40px;
+            color: #1a8c1a;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: #33ff33;
+        }
+
+        .cursor::after {
+            content: "█";
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">OMICRON</div>
+    <div class="subheader">USER: Catherine Berce — LEVEL 3 ACCESS</div>
+
+    <div class="project">
+        <div class="project-title">PROJECT 1: AURORA</div>
+        <div class="status completed">STATUS: COMPLETED</div>
+        <div class="supervisor">SUPERVISOR: S. Omicron</div>
+        <div class="description">"Study of the influence of atmospheric anomalies on local flora and fauna. The goal is to understand why in some regions of South America plants and animals mutate faster than in others."</div>
+        <div class="progress">Progress: 100%.</div>
+        <div class="results">Results: see Appendix 6.</div>
+    </div>
+
+    <div class="project">
+        <div class="project-title">PROJECT 2: CALDERA</div>
+        <div class="status suspended">STATUS: SUSPENDED</div>
+        <div class="supervisor">SUPERVISOR: S. Omicron</div>
+        <div class="description">"Study of geothermal activity in nearby volcanic rocks. The goal is to understand whether the energy of the earth can be used for the needs of the center."</div>
+        <div class="progress">Progress: 42%.</div>
+        <div class="results">Results: there is energy, but it... is unstable. The instruments record fluctuations that do not coincide with seismic activity. Suspended at the request of the government. — S.O."</div>
+    </div>
+
+    <div class="project">
+        <div class="project-title">PROJECT 3: [UNTITLED]</div>
+        <div class="status suspended">STATUS: IN PROGRESS</div>
+        <div class="supervisor">SUPERVISOR: Ashley [LAST NAME REDACTED]</div>
+        <div class="description">"Study of the connection between the emotional state of the carrier and the energy of Sample #4. The goal is to prove that this is not just energy, but a reflection of the psyche."</div>
+        <div class="progress">Progress: 34%.</div>
+        <div class="results">Assumptions: people with high anxiety influence the sample directly; the energy becomes stronger and weakens when contact with it deteriorates, even touching the object plays no role.</div>
+        <div class="note">Note: further research requires access to Sample #4. Request sent to S. Omicron. Awaiting response."</div>
+
+        <div class="reply">
+            <strong>REPLY FROM S. OMICRON:</strong><br>
+            "Ashley, I appreciate your enthusiasm. But Sample #4 is not a toy. It... is not like the others. We don't know what it does to people. Give me time. — S.O."
+        </div>
+    </div>
+
+    <a href="index.html" class="back">&lt; LOGOUT</a>
+
+</body>
+</html>
